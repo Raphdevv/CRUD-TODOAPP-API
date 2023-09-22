@@ -3,10 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
-from sqlalchemy import create_engine
-from sqlalchemy.engine import URL
-from sqlalchemy import Column, Integer, String, DateTime, Text
-from sqlalchemy.orm import declarative_base
 
 app = Flask(__name__)
 cors = CORS(app)
