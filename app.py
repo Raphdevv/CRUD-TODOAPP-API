@@ -4,8 +4,10 @@ from models import User, Todo, TodoType, app, db, jwt
 from datetime import datetime
 from flask_jwt_extended import jwt_required, get_jwt_identity,create_access_token, get_jwt_identity
 import bcrypt
+from flask_cors import cross_origin
 
 @app.route('/api/registor', methods=['POST'])
+@cross_origin()
 def registor():
     try:
         data = request.get_json()
@@ -24,6 +26,7 @@ def registor():
         return {'error': str(e)}, 400
 
 @app.route('/api/login', methods=['POST'])
+@cross_origin()
 def login():
     try:
         username = request.json.get('username')
@@ -44,6 +47,7 @@ def login():
         return {'error': str(e)}, 400
     
 @app.route('/api/gettodo', methods=['GET'])
+@cross_origin()
 def gettodo():
     try:
         todos = Todo.query.all()
@@ -59,6 +63,7 @@ def gettodo():
 
 @app.route('/api/createtodo', methods=['POST'])
 @jwt_required()
+@cross_origin()
 def createTodo():
     try:
         data = request.get_json()
@@ -77,6 +82,7 @@ def createTodo():
 
 @app.route('/api/edittodo/<int:todo_id>', methods=['POST'])
 @jwt_required()
+@cross_origin()
 def editTodo(todo_id):
     try:
         data = request.get_json()
@@ -93,6 +99,7 @@ def editTodo(todo_id):
     
 @app.route('/api/inprogress/<int:todo_id>', methods=['PUT'])
 @jwt_required()
+@cross_origin()
 def updateInprogress(todo_id):
     try:
         todo = Todo.query.get(todo_id)
@@ -108,6 +115,7 @@ def updateInprogress(todo_id):
     
 @app.route('/api/complete/<int:todo_id>', methods=['PUT'])
 @jwt_required()
+@cross_origin()
 def completeToDo(todo_id):
     try:
         todo = Todo.query.get(todo_id)
@@ -121,6 +129,7 @@ def completeToDo(todo_id):
 
 @app.route('/api/gettodobyuser/<int:id>', methods=['GET'])
 @jwt_required()
+@cross_origin()
 def gettodobyuser(id):
     try:
         todos = Todo.query.filter_by(owner_id=id).all()
@@ -136,6 +145,7 @@ def gettodobyuser(id):
     
 @app.route('/api/gettodotype', methods=['GET'])
 @jwt_required()
+@cross_origin()
 def gettodotype():
     try:
         todos_types = TodoType.query.all()

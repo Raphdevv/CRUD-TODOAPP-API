@@ -2,15 +2,20 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app)
+jwt = JWTManager(app)
+db = SQLAlchemy(app)
+
+# Config
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Tek:Tek778244*-+@localhost:3306/activeapp'
 app.config['SECRET_KEY'] = 'V7S@+!C+*zrmHhST'
 app.config['JWT_REQUIRED'] = False
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
+app.config['CORS_HEADERs'] = 'Content-Type'
 
-jwt = JWTManager(app)
-db = SQLAlchemy(app)
 
 class User(db.Model):
     __tablename__ = 'user_t'  
