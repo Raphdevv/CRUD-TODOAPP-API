@@ -9,7 +9,7 @@ cors = CORS(app)
 
 
 # Config
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://activeapp_user:9NSC1io2fn491lA1T6Q0QcO7dbXriCYs@dpg-ck6jvs08elhc73edlkb0-a:5432/activeapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Tek:Tek778244*-+@localhost:3306/activeapp'
 app.config['SECRET_KEY'] = 'V7S@+!C+*zrmHhST'
 app.config['JWT_REQUIRED'] = False
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
