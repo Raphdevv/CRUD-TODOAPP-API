@@ -3,13 +3,17 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from sqlalchemy import create_engine
+from sqlalchemy.engine import URL
+from sqlalchemy import Column, Integer, String, DateTime, Text
+from sqlalchemy.orm import declarative_base
 
 app = Flask(__name__)
 cors = CORS(app)
 
 
 # Config
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://activeapp_user:9NSC1io2fn491lA1T6Q0QcO7dbXriCYs@dpg-ck6jvs08elhc73edlkb0-a.singapore-postgres.render.com/activeapp'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://activeapp_user:9NSC1io2fn491lA1T6Q0QcO7dbXriCYs@dpg-ck6jvs08elhc73edlkb0-a.singapore-postgres.render.com/activeapp'
 app.config['SECRET_KEY'] = 'V7S@+!C+*zrmHhST'
 app.config['JWT_REQUIRED'] = False
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
