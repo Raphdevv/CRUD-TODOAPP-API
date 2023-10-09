@@ -143,6 +143,23 @@ def gettodobyuser(id):
     except Exception as e:
         return {'error': str(e)}, 400
     
+@app.route('/api/gettodobyid/<int:id>', methods=['GET'])
+@jwt_required()
+@cross_origin()
+def gettodobyid(id):
+    try:
+        todos = Todo.query.filter_by(id=id).first()
+        todo_map = {"id": todos.id,
+                    "owner_id": todos.owner_id,
+                    "topic": todos.topic,
+                    "content": todos.content,
+                    "status":todos.status,
+                    "type":todos.type,}
+        return {'data':todo_map,'success':True,'message': 'success'}, 200
+    except Exception as e:
+        return {'error': str(e)}, 400
+    
+    
 @app.route('/api/gettodotype', methods=['GET'])
 @jwt_required()
 @cross_origin()
